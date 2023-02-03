@@ -1,18 +1,18 @@
-Kerdo Arikas - Ülesanne Kuupäev
-Peeter Ivask - Kirjuta tekstifaili
-Sandra Järve - While tsükkel
-Oleksandr Krutko - Väljastus konsooli (print)
-Monika Künnapas - Sisestus konsoolis
-Sander Lehtoja - Ülesanne Klass
-Esme Lumi - Mängimine stringidega
-Justin Mihklep - Mängimine listidega
-Kaspar Muuli - Tee tühi list
-Joosep Padu - Ülesanne Ruut
-AP Joel Pailk - Kirjuta funktsioon (meetod)
-Marek Reimal - Loe tekstifaile
-Mirko Salus - Graafiline kasutajaliides (tkinter)
-Martin Sikka - Moodulite importimised
-Raino Tiru - Tee erinevat tüüpi muutujaid
-Irina Vassilko - For tsükkel
-Maksim Vedernikov - If lause
-Lily Veinberg - Ülesanne Vanus
+Kerdo Arikas - How to make a superscript?
+Peeter Ivask - How to create a new image signature (Label) variant?
+Sandra Järve - How to make a list of image signatures?
+Oleksandr Krutko - How to make a subscript?
+Monika Künnapas - How to open a PDF file in Word?
+Sander Lehtoja - How to remove the page number from the first page?
+Esme Lumi - How to add page numbers?
+Justin Mihklep - How to add a picture from your computer?
+Kaspar Muuli - How do I add a footnote?
+Joosep Padu - How do you flip one page in a document to landscape?
+AP Joel Pailk - What are the initial settings to make in Word?
+Marek Reimal - What are the pasting options in Word?
+Mirko Salus - How to create a cover page template?
+Martin Sikka - How to make a multilevel list?
+Raino Tiru - How to make a table of contents?
+Irina Vassilko - How to arrange text in columns?
+Maksim Vedernikov - How to save a document to a new name?
+Lily Veinberg - How to add a picture from the Internet?

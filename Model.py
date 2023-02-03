@@ -4,13 +4,13 @@ import tkinter.messagebox
 
 class Model:
 
-    def __init__(self, names, tasks):
-        self.names = names
-        self.tasks = tasks
+    def __init__(self):
+        self.names = []
+        self.tasks = []
 
     def mixmatch(self):
         if len(self.names) > len(self.tasks):
-            tkinter.messagebox.showerror("Error", "Failis pole piisavalt ülesandeid !")
+            tkinter.messagebox.showerror("Viga!", "Failis pole piisavalt ülesandeid !")
             return []
 
         else:

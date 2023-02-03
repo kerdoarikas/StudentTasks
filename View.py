@@ -9,7 +9,7 @@ class View:
         self.model = model
         self.controller = controller
 
-        self.listlenght = 10
+        self.listlenght = 20
 
         # Save ikoon
         self.save_img = Image.open("save.png")
@@ -23,6 +23,10 @@ class View:
         self.up_img = Image.open("upload.png")
         self.resized_up = self.up_img.resize((15, 15), Image.ANTIALIAS)
         self.new_up = ImageTk.PhotoImage(self.resized_up)
+        # Delete ikoon
+        self.del_img = Image.open("delete.png")
+        self.resized_del = self.del_img.resize((15, 15), Image.ANTIALIAS)
+        self.new_del = ImageTk.PhotoImage(self.resized_del)
 
         self.root.configure(background='#121212')
 
@@ -32,7 +36,18 @@ class View:
 
         self.header_label = tk.Label(root, text='-ÜLESANNETE JAGAJA-', font=self.big_font_style,
                                      bg='#121212', fg='#0275d8')
-        self.header_label.grid(row=0, column=0, columnspan=5, pady=20)
+        self.header_label.grid(row=0, column=0, columnspan=3, pady=20)
+
+        self.delete_button = tk.Button(root, text='  Tühjenda kõik', image=self.new_del, compound='left',
+                                      command=self.controller.delete_all,
+                                      bg='#d9534f',
+                                      fg='#ffffff',
+                                      bd=0,
+                                      font=self.default_style,
+                                      height=20,
+                                      width=130)
+
+        self.delete_button.grid(row=0, column=2, padx=10, pady=10)
 
         self.names_button = tk.Button(root, text='  Vali nimede fail', image=self.new_up, compound='left',
                                       command=self.controller.load_names,
