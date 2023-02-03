@@ -1,0 +1,18 @@
+Kerdo Arikas - Ülesanne Kuupäev
+Peeter Ivask - Kirjuta tekstifaili
+Sandra Järve - While tsükkel
+Oleksandr Krutko - Väljastus konsooli (print)
+Monika Künnapas - Sisestus konsoolis
+Sander Lehtoja - Ülesanne Klass
+Esme Lumi - Mängimine stringidega
+Justin Mihklep - Mängimine listidega
+Kaspar Muuli - Tee tühi list
+Joosep Padu - Ülesanne Ruut
+AP Joel Pailk - Kirjuta funktsioon (meetod)
+Marek Reimal - Loe tekstifaile
+Mirko Salus - Graafiline kasutajaliides (tkinter)
+Martin Sikka - Moodulite importimised
+Raino Tiru - Tee erinevat tüüpi muutujaid
+Irina Vassilko - For tsükkel
+Maksim Vedernikov - If lause
+Lily Veinberg - Ülesanne Vanus

@@ -1,83 +1,93 @@
 import tkinter as tk
-from tkinter import filedialog
+import tkinter.font as tkfont
+from PIL import ImageTk, Image
 
 
 class View:
-    def __init__(self, root, model):
+    def __init__(self, root, model, controller):
         self.root = root
         self.model = model
+        self.controller = controller
 
-        self.open_filetype = ('Textfiles', '*.txt'), ('All files', '*.*')
-        self.save_filetype = ('Textfiles', '*.txt'), ('CSV', '*.csv')
+        self.listlenght = 10
 
-        self.names_label = tk.Label(root, text='Nimed')
-        self.names_label.grid(row=0, column=0, padx=10, pady=10)
-        self.names_entry = tk.Entry(root, width=30)
-        self.names_entry.grid(row=1, column=0, padx=10, pady=10)
-        self.names_button = tk.Button(root, text='Vali nimede fail', command=self.load_names)
-        self.names_button.grid(row=2, column=0, padx=10, pady=10)
+        # Save ikoon
+        self.save_img = Image.open("save.png")
+        self.resized_save = self.save_img.resize((25, 25), Image.ANTIALIAS)
+        self.new_save = ImageTk.PhotoImage(self.resized_save)
+        # Mix ikoon
+        self.mix_img = Image.open("mix.png")
+        self.resized_mix = self.mix_img.resize((25, 25), Image.ANTIALIAS)
+        self.new_mix = ImageTk.PhotoImage(self.resized_mix)
+        # Upload ikoon
+        self.up_img = Image.open("upload.png")
+        self.resized_up = self.up_img.resize((15, 15), Image.ANTIALIAS)
+        self.new_up = ImageTk.PhotoImage(self.resized_up)
 
-        self.names_listbox = tk.Listbox(root, width=60)
-        self.names_listbox.grid(row=3, rowspan=4, column=0, padx=10, pady=10)
+        self.root.configure(background='#121212')
 
-        self.tasks_label = tk.Label(root, text='Ülesanded')
-        self.tasks_label.grid(row=0, column=1, padx=10, pady=10)
-        self.tasks_entry = tk.Entry(root, width=30)
-        self.tasks_entry.grid(row=1, column=1, padx=10, pady=10)
-        self.tasks_button = tk.Button(root, text='Vali ülesannete fail', command=self.load_tasks)
-        self.tasks_button.grid(row=2, column=1, padx=10, pady=10)
+        self.big_font_style = tkfont.Font(family='Helvetica', size=18, weight='bold')
+        self.default_style_bold = tkfont.Font(family='Helvetica', size=14, weight='bold')
+        self.default_style = tkfont.Font(family='Helvetica', size=10)
 
-        self.tasks_listbox = tk.Listbox(root, width=60)
-        self.tasks_listbox.grid(row=3, rowspan=4, column=1, padx=10, pady=10)
+        self.header_label = tk.Label(root, text='-ÜLESANNETE JAGAJA-', font=self.big_font_style,
+                                     bg='#121212', fg='#0275d8')
+        self.header_label.grid(row=0, column=0, columnspan=5, pady=20)
 
-        self.mixmatch_button = tk.Button(root, text='Sega ülesanded', command=self.mixmatch)
-        self.mixmatch_button.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
+        self.names_button = tk.Button(root, text='  Vali nimede fail', image=self.new_up, compound='left',
+                                      command=self.controller.load_names,
+                                      bg='#0275d8',
+                                      fg='#ffffff',
+                                      bd=0,
+                                      font=self.default_style,
+                                      height=20,
+                                      width=130)
+
+        self.names_button.grid(row=1, column=0, padx=10, pady=10)
+
+        self.names_listbox = tk.Listbox(root, height=self.listlenght, width=60, bd=0, bg='#292b2c', fg='white')
+        self.names_listbox.grid(row=3, rowspan=5, column=0, padx=10, pady=10)
+
+        self.tasks_button = tk.Button(root, text='  Vali ülesannete fail', image=self.new_up,
+                                      compound='left',
+                                      command=self.controller.load_tasks,
+                                      bg='#0275d8',
+                                      fg='#ffffff',
+                                      bd=0,
+                                      font=self.default_style,
+                                      height=20,
+                                      width=150)
+
+        self.tasks_button.grid(row=1, column=1, padx=10, pady=10)
+
+        self.tasks_listbox = tk.Listbox(root, height=self.listlenght, width=60, bd=0, bg='#292b2c', fg='white')
+        self.tasks_listbox.grid(row=3, rowspan=5, column=1, padx=10, pady=10)
+
+        self.mixmatch_button = tk.Button(root, text='   JAGA', image=self.new_mix, compound='left',
+                                         command=self.controller.mixmatch,
+                                         bg='#f0ad4e',
+                                         fg='#ffffff',
+                                         bd=0,
+                                         font=self.default_style,
+                                         height=40,
+                                         width=150)
+
+        self.mixmatch_button.grid(row=8, column=0, columnspan=2, padx=10, pady=10)
 
         # Salvestusnupp
-        self.save_button = tk.Button(root, text='Salvesta', command=self.save)
-        self.save_button.grid(row=7, column=2, columnspan=2, padx=10, pady=10)
+        self.save_button = tk.Button(root, text='   SALVESTA', image=self.new_save, compound='left',
+                                     command=self.controller.save,
+                                     bg='#5cb85c',
+                                     fg='#ffffff',
+                                     bd=0,
+                                     font=self.default_style,
+                                     height=40,
+                                     width=150)
+
+        self.save_button.grid(row=8, column=2, columnspan=2, padx=10, pady=10)
 
         # Segatud ülessanded
-        self.output_label = tk.Label(root, text='Väljund')
-        self.output_label.grid(row=0, column=2, rowspan=3, padx=10, pady=10)
-        self.mixed_listbox = tk.Listbox(root, width=60)
-        self.mixed_listbox.grid(row=3, rowspan=4, column=2, padx=10, pady=10)
-
-
-    def load_names(self):
-        file_path = filedialog.askopenfilename(filetypes=self.open_filetype)
-        if file_path:
-            self.names_entry.delete(0, tk.END)
-            self.names_entry.insert(0, file_path)
-            with open(file_path, encoding='utf-8') as f:
-                self.model.names = [line.strip() for line in f]
-
-            self.names_listbox.delete(0, tk.END)
-            for name in self.model.names:
-                self.names_listbox.insert(tk.END, name)
-
-    def load_tasks(self):
-        file_path = filedialog.askopenfilename(filetypes=self.open_filetype)
-        if file_path:
-            self.tasks_entry.delete(0, tk.END)
-            self.tasks_entry.insert(0, file_path)
-            with open(file_path, encoding='utf-8') as f:
-                self.model.tasks = [line.strip() for line in f]
-
-            self.tasks_listbox.delete(0, tk.END)
-            for task in self.model.tasks:
-                self.tasks_listbox.insert(tk.END, task)
-
-    def mixmatch(self):
-        self.mixed_listbox.delete(0, tk.END)
-        self.current_mixmatch = list(self.model.mixmatch())
-        for name, task in self.current_mixmatch:
-            self.mixed_listbox.insert(tk.END, f'{name} - {task}')
-
-    def save(self):
-        file_path = filedialog.asksaveasfilename(filetypes=self.save_filetype, defaultextension='.txt')
-        if file_path:
-            with open(file_path, 'w', encoding='utf-8') as f:
-                for name, task in self.current_mixmatch:
-                    f.write(f'{name} - {task}\n')
-
+        self.output_label = tk.Label(root, text='Väljund', font=self.default_style_bold, bg='#121212', fg='#0275d8')
+        self.output_label.grid(row=1, column=2, padx=10, pady=10)
+        self.mixed_listbox = tk.Listbox(root, height=self.listlenght, width=60, bd=0, bg='#292b2c', fg='white')
+        self.mixed_listbox.grid(row=3, rowspan=5, column=2, padx=10, pady=10)
